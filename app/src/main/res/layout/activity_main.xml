@@ -4,15 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@color/white"
+    tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/btnHome"
+            android:src="@drawable/ic_home_24"
+            android:background="@drawable/background_btn_red"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnHomeIc"
+            android:src="@drawable/ic_home_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintTop_toTopOf="@id/btnHome"
+            app:layout_constraintStart_toStartOf="@id/btnHome"
+            app:layout_constraintEnd_toEndOf="@id/btnHome"
+            app:layout_constraintBottom_toBottomOf="@id/btnHome"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/btnAdd"
+            android:src="@drawable/ic_add_24"
+            android:layout_marginTop="-18dp"
+            android:background="@drawable/background_btn_red2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnHome"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAddIc"
+            android:src="@drawable/ic_add_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintTop_toTopOf="@id/btnAdd"
+            app:layout_constraintStart_toStartOf="@id/btnAdd"
+            app:layout_constraintEnd_toEndOf="@id/btnAdd"
+            app:layout_constraintBottom_toBottomOf="@id/btnAdd"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/btnConfig"
+            android:src="@drawable/ic_config_24"
+            android:layout_marginTop="-18dp"
+            android:background="@drawable/background_btn_red3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAdd"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnConfigIc"
+            android:src="@drawable/ic_config_24"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintTop_toTopOf="@id/btnConfig"
+            app:layout_constraintStart_toStartOf="@id/btnConfig"
+            app:layout_constraintEnd_toEndOf="@id/btnConfig"
+            app:layout_constraintBottom_toBottomOf="@id/btnConfig"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
