@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.home.HomeActivity"
+    tools:ignore="Overdraw">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="60dp"
@@ -15,7 +16,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:id="@+id/btnHome"
             android:src="@drawable/ic_home_24"
             android:background="@drawable/background_btn_red"
@@ -27,6 +28,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnHomeIc"
             android:src="@drawable/ic_home_24"
+            android:layout_marginTop="-18dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintTop_toTopOf="@id/btnHome"
             app:layout_constraintStart_toStartOf="@id/btnHome"
@@ -35,7 +37,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:id="@+id/btnAdd"
             android:src="@drawable/ic_add_24"
             android:layout_marginTop="-18dp"
@@ -48,6 +50,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnAddIc"
             android:src="@drawable/ic_add_24"
+            android:layout_marginTop="-18dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintTop_toTopOf="@id/btnAdd"
             app:layout_constraintStart_toStartOf="@id/btnAdd"
@@ -56,7 +59,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:id="@+id/btnConfig"
             android:src="@drawable/ic_config_24"
             android:layout_marginTop="-18dp"
@@ -69,6 +72,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnConfigIc"
             android:src="@drawable/ic_config_24"
+            android:layout_marginTop="-18dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             app:layout_constraintTop_toTopOf="@id/btnConfig"
             app:layout_constraintStart_toStartOf="@id/btnConfig"
@@ -77,5 +81,27 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="24dp"
+        android:id="@+id/viewBottomBar"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtBottomBar"
+        android:textColor="@color/white"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewBottomBar"
+        tools:text="Barra de informações"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
