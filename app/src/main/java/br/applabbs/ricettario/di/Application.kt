@@ -4,13 +4,10 @@ import androidx.multidex.MultiDexApplication
 import br.applabbs.ricettario.di.AppComponent.getAllModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.component.KoinApiExtension
-import org.koin.core.component.KoinComponent
+import org.koin.core.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 
-
-@KoinApiExtension
 open class Application: MultiDexApplication(), KoinComponent {
 
     override fun onCreate() {
@@ -23,6 +20,7 @@ open class Application: MultiDexApplication(), KoinComponent {
             androidLogger()
             androidContext(this@Application)
             koin.loadModules(getAllModules())
+            koin.createRootScope()
         }
     }
 

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:minHeight="240dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineInit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <TextView
+        android:id="@+id/txtTitleDialogStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="Insira a instrução / step da receita"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Insira a instrução/step"/>
+
+    <EditText
+        android:id="@+id/edtDetail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:focusable="true"
+        android:autofillHints=""
+        android:backgroundTint="@color/black"
+        android:digits="qwertyuiopasdfghjklzxcvbnm áãâóõéíçê QWERTYUIOPASDFGHJKLZXCVBNM ()1234567890 @#$%*=+-\/?!-,."
+        android:hint=" - "
+        android:imeOptions="actionDone"
+        android:inputType="text|textCapSentences"
+        android:maxLength="200"
+        android:maxLines="3"
+        android:nextFocusDown="@id/btnAddStep"
+        android:textColor="@color/black"
+        android:textCursorDrawable="@null"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@id/guidelineInit"
+        app:layout_constraintTop_toBottomOf="@id/txtTitleDialogStep" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnSkipStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_24"
+        android:layout_marginEnd="12dp"
+        android:text="Cancelar"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/red"
+        app:icon="@drawable/ic_remove_24"
+        app:layout_constraintStart_toStartOf="@id/guidelineInit"
+        app:layout_constraintTop_toBottomOf="@id/edtDetail"
+        tools:text="Cancelar"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnAddStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="@dimen/size_24"
+        android:text="Adicionar"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/green"
+        app:icon="@drawable/ic_adicionar_24"
+        app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
+        app:layout_constraintTop_toBottomOf="@id/edtDetail"
+        tools:text="Adicionar"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

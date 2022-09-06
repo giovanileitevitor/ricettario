@@ -47,7 +47,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -56,14 +56,27 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     // Koin for Android
-    implementation "org.koin:koin-android:2.2.2"
-    implementation "org.koin:koin-android-scope:2.2.2"
-    implementation "org.koin:koin-android-viewmodel:2.2.2"
+    implementation 'org.koin:koin-androidx-fragment:2.1.5'
+    implementation 'org.koin:koin-androidx-scope:2.1.5'
+    implementation 'org.koin:koin-androidx-viewmodel:2.1.5'
+    implementation 'org.koin:koin-androidx-ext:2.0.1'
+    implementation 'org.koin:koin-core:2.1.5'
 
     // ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
     // MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+
+    // CircleImage
+    implementation "de.hdodenhof:circleimageview:3.1.0"
+
+    // Room
+    implementation "androidx.room:room-runtime:2.3.0"
+    testImplementation "androidx.room:room-testing:2.3.0"
+    implementation "androidx.room:room-ktx:2.3.0"
 
 }

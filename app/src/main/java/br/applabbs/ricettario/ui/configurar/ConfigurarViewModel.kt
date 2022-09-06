@@ -1,10 +1,15 @@
-package br.applabbs.ricettario.ui.visualizar
+package br.applabbs.ricettario.ui.configurar
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.applabbs.ricettario.domain.local.usecases.ReceitaUseCase
 import kotlinx.coroutines.launch
 
-class VisualizarViewModel(): ViewModel() {
+class ConfigurarViewModel(
+    private val context: Context,
+    private val receitaUseCase: ReceitaUseCase
+): ViewModel() {
 
     fun getDetalhesReceita(){
         viewModelScope.launch {

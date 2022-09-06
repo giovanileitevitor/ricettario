@@ -6,9 +6,31 @@
         <entry key="app/src/main/res/drawable-v24/background_btn_red.xml" value="0.1695" />
         <entry key="app/src/main/res/drawable-v24/background_btn_red2.xml" value="0.2435" />
         <entry key="app/src/main/res/drawable-v24/background_btn_red3.xml" value="0.2435" />
-        <entry key="app/src/main/res/layout/activity_adicionar.xml" value="0.36302083333333335" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/drawable-v24/bg_button_black.xml" value="0.155" />
+        <entry key="app/src/main/res/drawable-v24/bg_button_black_quadrado.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable-v24/bg_button_black_reto.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable-v24/bg_small_btn.xml" value="0.191" />
+        <entry key="app/src/main/res/drawable/ic_add_24.xml" value="0.248" />
+        <entry key="app/src/main/res/drawable/ic_add_rounded_24.xml" value="0.155" />
+        <entry key="app/src/main/res/drawable/ic_config_24.xml" value="0.155" />
+        <entry key="app/src/main/res/drawable/ic_fotos.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable/ic_home_24.xml" value="0.1275" />
+        <entry key="app/src/main/res/drawable/ic_search_24.xml" value="0.155" />
+        <entry key="app/src/main/res/drawable/ic_star.xml" value="0.155" />
+        <entry key="app/src/main/res/drawable/ic_star_off.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_validate_off_24.xml" value="0.155" />
+        <entry key="app/src/main/res/drawable/ic_validate_on_24.xml" value="0.155" />
+        <entry key="app/src/main/res/layout/activity_adicionar.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/activity_configurar.xml" value="0.23697916666666666" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.23697916666666666" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
         <entry key="app/src/main/res/layout/activity_visualizar.xml" value="0.225" />
+        <entry key="app/src/main/res/layout/dialog_add_step.xml" value="0.3307291666666667" />
+        <entry key="app/src/main/res/layout/item_imagem_receita.xml" value="0.2046875" />
+        <entry key="app/src/main/res/layout/item_my_receitas.xml" value="0.2359375" />
+        <entry key="app/src/main/res/layout/item_step.xml" value="0.36255924170616116" />
+        <entry key="app/src/main/res/layout/loading_box.xml" value="0.3640625" />
+        <entry key="app/src/main/res/layout/menu_home.xml" value="0.2359375" />
       </map>
     </option>
   </component>

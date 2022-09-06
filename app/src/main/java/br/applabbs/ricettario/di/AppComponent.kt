@@ -8,7 +8,9 @@ object AppComponent{
 
     private fun getAppModules(): Array<Module>{
         return arrayOf(
-            AppModules.viewModelModule
+            AppModules.viewModelModule,
+            AppModules.localUseCasesModule,
+            AppModules.remoteUseCasesModule
         )
     }
 }

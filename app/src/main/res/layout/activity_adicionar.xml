@@ -1,10 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     tools:context=".ui.adicionar.AdicionarActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide65"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60"/>
+
+    <include
+        android:id="@+id/loadingBox"
+        layout="@layout/loading_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        tools:visibility="invisible"/>
+
+    <ImageButton
+        android:id="@+id/btnVoltar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_voltar_24"
+        app:layout_constraintBottom_toBottomOf="@id/txtAppName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtAppName"/>
+
+    <TextView
+        android:id="@+id/txtAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_24"
+        android:fontFamily="@font/advent_pro"
+        android:text="Adicionar Receita"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_24"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/btnVoltar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnValidar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_20"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_validate_on_24"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/txtAppName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txtAppName" />
+
+    <View
+        android:id="@+id/line1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/size_24"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtAppName"/>
+
+    <!-- INCLUIR O SCROLL VIEW AQUI...   -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerTitleReceita"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_80"
+        android:layout_margin="@dimen/size_18"
+        android:background="@drawable/bg_button_black_reto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1">
+
+        <TextView
+            android:id="@+id/txtLabelReceita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_6"
+            android:layout_marginStart="@dimen/size_12"
+            android:text="Informe o título desta receita"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/edtTituloReceita"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginEnd="@dimen/size_12"
+            android:autofillHints=" - - - "
+            android:textCursorDrawable="@null"
+            android:backgroundTint="@color/black"
+            android:digits="qwertyuiopasdfghjklzxcvbnm QWERTYUIOPASDFGHJKLZXCVBNM áàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÖÚÇÑ"
+            android:hint=" - - - "
+            android:singleLine="true"
+            android:imeOptions="actionGo"
+            android:nextFocusDown="@id/btnIncluirStep"
+            android:inputType="text|textCapWords"
+            android:maxLength="30"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtLabelReceita"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+   <androidx.constraintlayout.widget.ConstraintLayout
+       android:id="@+id/containerStepsReceita"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_margin="@dimen/size_18"
+       android:background="@drawable/bg_button_black_reto"
+       android:minHeight="@dimen/size_80"
+       android:maxHeight="300dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/containerTitleReceita"
+       app:layout_constraintBottom_toBottomOf="@id/guide65">
+
+       <TextView
+           android:id="@+id/txtLabelPassos"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/size_6"
+           android:layout_marginStart="@dimen/size_12"
+           android:text="Adicione Etapas"
+           android:textAlignment="center"
+           android:textColor="@color/black"
+           android:textSize="@dimen/font_size_14"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent"/>
+
+       <ImageButton
+           android:id="@+id/btnIncluirStep"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/size_8"
+           android:layout_marginEnd="@dimen/size_8"
+           android:background="?attr/selectableItemBackgroundBorderless"
+           android:src="@drawable/ic_add_rounded_24"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toTopOf="parent"/>
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/rvSteps"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           android:layout_marginStart="1dp"
+           android:layout_marginTop="@dimen/size_8"
+           android:layout_marginEnd="1dp"
+           android:minHeight="@dimen/size_40"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/txtLabelPassos"
+           tools:orientation="vertical"
+           tools:itemCount="1"
+           tools:listitem="@layout/item_step" />
+
+   </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerPhotos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/size_18"
+        android:layout_marginEnd="@dimen/size_18"
+        android:layout_marginBottom="@dimen/size_18"
+        android:background="@drawable/bg_button_black_reto"
+        android:minHeight="@dimen/size_80"
+        app:layout_constraintBottom_toTopOf="@id/btnApagar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guide65">
+
+        <TextView
+            android:id="@+id/txtLabelFotos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_6"
+            android:text="Adicione Fotos"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_14"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnIncluirFoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:layout_marginEnd="@dimen/size_8"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_add_rounded_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvFotos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/size_8"
+            android:minHeight="@dimen/size_40"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtLabelFotos"
+            android:orientation="horizontal"
+            tools:itemCount="2"
+            tools:listitem="@layout/item_imagem_receita"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_16"
+        app:backgroundTint="@color/green"
+        android:contentDescription="botao salvar"
+        android:text="Salvar"
+        android:textColor="@color/black"
+        app:icon="@drawable/ic_adicionar_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnApagar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/size_16"
+        app:backgroundTint="@color/red"
+        android:contentDescription="botao apagar"
+        android:text="Apagar"
+        android:textColor="@color/black"
+        app:icon="@drawable/ic_remove_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
