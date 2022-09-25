@@ -75,8 +75,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtAppName"/>
 
-    <!-- INCLUIR O SCROLL VIEW AQUI...   -->
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerTitleReceita"
         android:layout_width="match_parent"
@@ -91,8 +89,8 @@
             android:id="@+id/txtLabelReceita"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_6"
             android:layout_marginStart="@dimen/size_12"
+            android:layout_marginTop="@dimen/size_6"
             android:text="Informe o título desta receita"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_14"
@@ -106,17 +104,17 @@
             android:layout_marginStart="@dimen/size_12"
             android:layout_marginEnd="@dimen/size_12"
             android:autofillHints=" - - - "
-            android:textCursorDrawable="@null"
             android:backgroundTint="@color/black"
-            android:digits="qwertyuiopasdfghjklzxcvbnm QWERTYUIOPASDFGHJKLZXCVBNM áàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÖÚÇÑ"
-            android:hint=" - - - "
-            android:singleLine="true"
-            android:imeOptions="actionGo"
-            android:nextFocusDown="@id/btnIncluirStep"
+            android:digits="qwertyuiopasdfghjklzxcvbnm QWERTYUIOPASDFGHJKLZXCVBNM 0123456789 áàâãéèêíïóôõöúçñÁÀÂÃÉÈÊÍÏÓÔÖÚÇÑ"
+            android:focusable="true"
+            android:imeOptions="actionDone"
             android:inputType="text|textCapWords"
-            android:maxLength="30"
+            android:maxLength="45"
             android:maxLines="1"
+            android:nextFocusDown="@id/btnIncluirStep"
+            android:singleLine="true"
             android:textColor="@color/black"
+            android:textCursorDrawable="@null"
             android:textSize="@dimen/font_size_16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,19 +128,19 @@
        android:layout_height="0dp"
        android:layout_margin="@dimen/size_18"
        android:background="@drawable/bg_button_black_reto"
-       android:minHeight="@dimen/size_80"
        android:maxHeight="300dp"
+       android:minHeight="@dimen/size_80"
+       app:layout_constraintBottom_toBottomOf="@id/guide65"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/containerTitleReceita"
-       app:layout_constraintBottom_toBottomOf="@id/guide65">
+       app:layout_constraintTop_toBottomOf="@id/containerTitleReceita">
 
        <TextView
            android:id="@+id/txtLabelPassos"
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:layout_marginTop="@dimen/size_6"
            android:layout_marginStart="@dimen/size_12"
+           android:layout_marginTop="@dimen/size_6"
            android:text="Adicione Etapas"
            android:textAlignment="center"
            android:textColor="@color/black"
@@ -166,16 +164,16 @@
            android:layout_width="match_parent"
            android:layout_height="0dp"
            android:layout_marginStart="1dp"
-           android:layout_marginTop="@dimen/size_8"
+           android:layout_marginTop="@dimen/size_14"
            android:layout_marginEnd="1dp"
            android:minHeight="@dimen/size_40"
            app:layout_constraintBottom_toBottomOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
            app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintTop_toBottomOf="@id/txtLabelPassos"
-           tools:orientation="vertical"
            tools:itemCount="1"
-           tools:listitem="@layout/item_step" />
+           tools:listitem="@layout/item_step"
+           tools:orientation="vertical" />
 
    </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -188,7 +186,7 @@
         android:layout_marginBottom="@dimen/size_18"
         android:background="@drawable/bg_button_black_reto"
         android:minHeight="@dimen/size_80"
-        app:layout_constraintBottom_toTopOf="@id/btnApagar"
+        app:layout_constraintBottom_toTopOf="@id/btnCancelar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guide65">
@@ -221,39 +219,40 @@
             android:id="@+id/rvFotos"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="@dimen/size_8"
+            android:layout_marginTop="@dimen/size_12"
+            android:layout_marginStart="@dimen/size_4"
+            android:layout_marginEnd="@dimen/size_4"
+            android:layout_marginBottom="@dimen/size_4"
             android:minHeight="@dimen/size_40"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/txtLabelFotos"
-            android:orientation="horizontal"
             tools:itemCount="2"
             tools:listitem="@layout/item_imagem_receita"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/btnSalvar"
+        android:id="@+id/btnAdicionarReceita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size_16"
-        app:backgroundTint="@color/green"
-        android:contentDescription="botao salvar"
-        android:text="Salvar"
+        android:text="Adicionar"
         android:textColor="@color/black"
+        app:backgroundTint="@color/green"
         app:icon="@drawable/ic_adicionar_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/btnApagar"
+        android:id="@+id/btnCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/size_16"
-        app:backgroundTint="@color/red"
-        android:contentDescription="botao apagar"
-        android:text="Apagar"
+        android:text="Cancelar"
         android:textColor="@color/black"
+        app:backgroundTint="@color/red"
         app:icon="@drawable/ic_remove_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>

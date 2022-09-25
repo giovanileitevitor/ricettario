@@ -63,16 +63,16 @@ class PermissionUtils {
             Added all permissions conditions here
              */
 
-            if (!permissions.isEmpty()) {
+            if (permissions.isNotEmpty()) {
                 ActivityCompat.requestPermissions(
                     activity,
                     permissions.toArray(arrayOfNulls<String>(permissions.size)),
                     requestCode
                 )
                 return false
+            }else{
+                return true
             }
-
-            return true
         }
     }
 

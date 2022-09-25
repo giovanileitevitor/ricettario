@@ -8,7 +8,7 @@ import org.koin.core.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 
-open class Application: MultiDexApplication(), KoinComponent {
+open class RicettarioApplication: MultiDexApplication(), KoinComponent {
 
     override fun onCreate() {
         super.onCreate()
@@ -18,9 +18,9 @@ open class Application: MultiDexApplication(), KoinComponent {
     private fun initDI(){
         startKoin {
             androidLogger()
-            androidContext(this@Application)
+            androidContext(this@RicettarioApplication)
             koin.loadModules(getAllModules())
-            koin.createRootScope()
+            //koin.createRootScope()
         }
     }
 

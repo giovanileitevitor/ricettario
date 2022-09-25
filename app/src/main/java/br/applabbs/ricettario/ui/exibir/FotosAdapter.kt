@@ -1,21 +1,23 @@
-package br.applabbs.ricettario.ui.adicionar
+package br.applabbs.ricettario.ui.exibir
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import br.applabbs.ricettario.R
-import br.applabbs.ricettario.domain.local.models.Step
+import br.applabbs.ricettario.domain.local.models.Foto
+import com.bumptech.glide.RequestManager
 
-class RvStepsAdapter(
-    private val data: List<Step>,
-    private val itemListener: (Step) -> Unit
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FotosAdapter(
+    private val data: List<Foto>,
+    private val mGlide: RequestManager,
+    private val itemListener: (Foto) -> Unit
+): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val viewModel: View = inflater.inflate(R.layout.item_step, parent, false)
+        val viewModel: View = inflater.inflate(R.layout.item_imagem_receita, parent, false)
         return DefaultVH(viewModel)
     }
 
@@ -28,8 +30,7 @@ class RvStepsAdapter(
     }
 
     private inner class DefaultVH(itemView: View): RecyclerView.ViewHolder(itemView){
-        var id: TextView = itemView.findViewById(R.id.txtIdStep)
-        var info: TextView = itemView.findViewById(R.id.txtStep)
+        var photo: ImageView = itemView.findViewById(R.id.imgReceita)
 
         init{
             itemView.setOnClickListener {
@@ -44,8 +45,8 @@ class RvStepsAdapter(
         val item = data[position]
         val defaultVH = holder as DefaultVH
 
-        defaultVH.id.text = position.toString() + " ->"
-        defaultVH.info.text = item.info
+        mGlide.load(item.imgAddress)
+            .placeholder(R.drawable.img_receita)
+            .into(defaultVH.photo)
     }
-
 }

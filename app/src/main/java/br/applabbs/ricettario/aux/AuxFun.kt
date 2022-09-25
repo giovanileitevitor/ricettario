@@ -1,8 +1,13 @@
 package br.applabbs.ricettario.aux
 
+import android.app.Activity
+import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import br.applabbs.ricettario.domain.local.models.Foto
 import br.applabbs.ricettario.domain.local.models.Receita
 import br.applabbs.ricettario.domain.local.models.Step
+import kotlin.random.Random
 
 fun geradorReceitas(qtd: Int): ArrayList<Receita>{
     val list = ArrayList<Receita>()
@@ -32,7 +37,6 @@ fun geradorReceitas(qtd: Int): ArrayList<Receita>{
             Receita(
                 id = i,
                 titulo = if(i%2 !=0) "Pudim cremoso" else "Coxinha recheada",
-                detalhes = "",
                 img = "A pessoa possui",
                 isFavorito = if(i%2 !=0) true else false,
                 steps = steps,
@@ -76,13 +80,25 @@ fun emptyReceita(): List<Receita>{
             Receita(
                 id = i,
                 titulo = "RECEITAS",
-                detalhes = "Clique no botão + para adicionar uma nova receita",
                 img = "R.drawable.livro_receita",
-                isFavorito = true,
+                isFavorito = false,
                 steps = emptyList(),
                 fotos = emptyList()
             )
         )
     }
     return emptyReceita
+}
+
+fun randomicInteger(): Int {
+    return Random.nextInt(1, 99999)
+}
+
+fun Activity.hideKeyboard() {
+    hideKeyboard(currentFocus ?: View(this))
+}
+
+fun Context.hideKeyboard(view: View) {
+    val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
 }

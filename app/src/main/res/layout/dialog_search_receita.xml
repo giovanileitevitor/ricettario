@@ -36,28 +36,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
-        android:text="Insira a instrução / step da receita"
+        android:text="Qual receita você está procurando?"
         android:textColor="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Insira a instrução/step"/>
+        tools:text="Qual receita você está procurando?"/>
 
     <EditText
-        android:id="@+id/edtDetail"
+        android:id="@+id/edtSearchReceita"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:focusable="true"
         android:autofillHints=""
         android:backgroundTint="@color/black"
         android:digits="qwertyuiopasdfghjklzxcvbnm áãâóõéíçê QWERTYUIOPASDFGHJKLZXCVBNM ()1234567890 @#$%*=+-\/?!-,."
-        android:hint=" - "
+        android:hint=" digite o nome da receita ou parte dela "
         android:imeOptions="actionDone"
         android:inputType="text|textCapSentences"
         android:maxLength="200"
         android:maxLines="3"
+        android:nextFocusDown="@id/btnAddStep"
         android:textColor="@color/black"
         android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
@@ -65,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@id/txtTitleDialogStep" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/btnSkipStep"
+        android:id="@+id/btnSkipReceita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_24"
@@ -75,21 +77,21 @@
         app:backgroundTint="@color/red"
         app:icon="@drawable/ic_remove_24"
         app:layout_constraintStart_toStartOf="@id/guidelineInit"
-        app:layout_constraintTop_toBottomOf="@id/edtDetail"
+        app:layout_constraintTop_toBottomOf="@id/edtSearchReceita"
         tools:text="Cancelar"/>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/btnAddStep"
+        android:id="@+id/btnSearchReceita"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="@dimen/size_24"
-        android:text="Adicionar"
+        android:text="Procurar"
         android:textColor="@color/black"
         app:backgroundTint="@color/green"
-        app:icon="@drawable/ic_adicionar_24"
+        app:icon="@drawable/ic_search_24"
         app:layout_constraintEnd_toEndOf="@id/guidelineEnd"
-        app:layout_constraintTop_toBottomOf="@id/edtDetail"
-        tools:text="Adicionar"/>
+        app:layout_constraintTop_toBottomOf="@id/edtSearchReceita"
+        tools:text="Procurar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

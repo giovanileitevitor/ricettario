@@ -1,5 +1,8 @@
 package br.applabbs.ricettario.di
 
+import br.applabbs.ricettario.di.AppModules.localRepositoriesModule
+import br.applabbs.ricettario.di.AppModules.localUseCasesModule
+import br.applabbs.ricettario.di.AppModules.viewModelModule
 import org.koin.core.module.Module
 
 object AppComponent{
@@ -8,9 +11,10 @@ object AppComponent{
 
     private fun getAppModules(): Array<Module>{
         return arrayOf(
-            AppModules.viewModelModule,
-            AppModules.localUseCasesModule,
-            AppModules.remoteUseCasesModule
+            viewModelModule,
+            localUseCasesModule,
+            localRepositoriesModule
+            //remoteUseCasesModule
         )
     }
 }

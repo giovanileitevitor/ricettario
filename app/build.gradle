@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    //id 'example.tracerplugin' version '1.0.0'
 }
 
 android {
@@ -43,6 +45,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -61,6 +66,8 @@ dependencies {
     implementation 'org.koin:koin-androidx-viewmodel:2.1.5'
     implementation 'org.koin:koin-androidx-ext:2.0.1'
     implementation 'org.koin:koin-core:2.1.5'
+    implementation 'org.koin:koin-test:2.0.1'
+    implementation 'io.mockk:mockk:1.10.6'
 
     // ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
@@ -75,8 +82,10 @@ dependencies {
     implementation "de.hdodenhof:circleimageview:3.1.0"
 
     // Room
-    implementation "androidx.room:room-runtime:2.3.0"
-    testImplementation "androidx.room:room-testing:2.3.0"
-    implementation "androidx.room:room-ktx:2.3.0"
+    def room_version = "2.4.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    androidTestImplementation "androidx.room:room-testing:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
 
 }

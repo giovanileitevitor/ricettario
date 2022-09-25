@@ -16,9 +16,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.applabbs.ricettario.aux.PermissionUtils
+import br.applabbs.ricettario.aux.hideKeyboard
 import br.applabbs.ricettario.aux.onDebouncedListener
 import br.applabbs.ricettario.databinding.ActivityAdicionarBinding
 import br.applabbs.ricettario.databinding.DialogAddStepBinding
+import br.applabbs.ricettario.databinding.DialogAddedOkBinding
 import br.applabbs.ricettario.domain.local.models.*
 import com.bumptech.glide.Glide
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,38 +30,51 @@ class AdicionarActivity: AppCompatActivity() {
 
     private val viewModel : AdicionarViewModel by viewModel()
     private lateinit var binding: ActivityAdicionarBinding
-    private lateinit var rvStepsAdapter: RvStepsAdapter
-    private lateinit var rvFotosAdapter: RvFotosAdapter
-    private lateinit var receitaCompleta: ReceitaCompleta
+    private lateinit var stepsAdapter: StepsAdapter
+    private lateinit var fotosAdapter: FotosAdapter
     private val REQUEST_CODE = 999
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdicionarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupPermissions()
         setupScreen()
         setupListeners()
         setupObservers()
     }
 
     override fun onBackPressed() {
+        viewModel.deleteAllTemporarySteps()
+        viewModel.deleteAllTermporayFotos()
         super.onBackPressed()
+    }
+
+    override fun onDestroy() {
+        viewModel.deleteAllTemporarySteps()
+        viewModel.deleteAllTermporayFotos()
+        super.onDestroy()
+    }
+
+    private fun setupPermissions(){
+        PermissionUtils.verifyPermissions(this, 1)
     }
 
     private fun setupScreen(){
         binding.edtTituloReceita.isFocusable = true
+        binding.edtTituloReceita.text.clear()
     }
 
     private fun setupListeners(){
         binding.btnVoltar.onDebouncedListener {
+            viewModel.deleteAllTemporarySteps()
+            viewModel.deleteAllTermporayFotos()
             super.onBackPressed()
         }
 
-        binding.btnSalvar.onDebouncedListener {
-            super.onBackPressed()
-        }
-
-        binding.btnApagar.onDebouncedListener {
+        binding.btnCancelar.onDebouncedListener {
+            viewModel.deleteAllTemporarySteps()
+            viewModel.deleteAllTermporayFotos()
             super.onBackPressed()
         }
 
@@ -70,38 +85,80 @@ class AdicionarActivity: AppCompatActivity() {
         binding.btnIncluirFoto.onDebouncedListener {
             dialogAddFoto()
         }
+
+        binding.btnAdicionarReceita.onDebouncedListener {
+            val tituloReceita = binding.edtTituloReceita.text.toString()
+            if(tituloReceita.isNotBlank()){
+                viewModel.addNovaReceita(tituloReceita = tituloReceita)
+            }else{
+                Toast.makeText(this, "Titulo da Receita não informado", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setupObservers(){
         viewModel.getSteps.observe(this, Observer{ it ->
-            fillListSteps(it)
+            setupStepsRv(it)
         })
 
         viewModel.getFotos.observe(this, Observer{  it ->
-            fillListFotos(it)
+            setupFotosRv(it)
+        })
+
+        viewModel.error.observe(this, Observer{ errorState ->
+            if(errorState.hasError){
+                Toast.makeText(this, errorState.statusError, Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        viewModel.ack.observe(this, Observer{ ackState ->
+            if(ackState.hasSuccess){
+                showConfirmationDialog(msg = ackState.statusAck)
+            }
         })
 
     }
 
-    private fun fillListSteps(steps: List<Step>){
+    private fun setupStepsRv(steps: List<Step>){
+        binding.rvSteps.setHasFixedSize(true)
         binding.rvSteps.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-        rvStepsAdapter = RvStepsAdapter(steps, singleClickStep)
-        binding.rvSteps.adapter = rvStepsAdapter
+        stepsAdapter = StepsAdapter(steps, singleClickStep, longClickStep)
+        binding.rvSteps.adapter = stepsAdapter
     }
 
     private val singleClickStep = { step: Step ->
         Toast.makeText(this, step.info, Toast.LENGTH_SHORT).show()
     }
 
-    private fun fillListFotos(fotos: List<Foto>){
-        binding.rvFotos.setHasFixedSize(true)
-        binding.rvFotos.layoutManager = GridLayoutManager(this, 2)
-        rvFotosAdapter = RvFotosAdapter(fotos, Glide.with(this), singleClickFoto)
-        binding.rvFotos.adapter = rvFotosAdapter
+    private val longClickStep = { step: Step ->
+        viewModel.deleteStep(idStep = step.id ?: 0)
+    }
+
+    private fun setupFotosRv(fotos: List<Foto>){
+        val qtdFotos = fotos.size
+
+        val spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
+            override fun getSpanSize(position: Int): Int {
+                return if((qtdFotos % 2 != 0) && (position == 0)){
+                    2
+                }else{
+                    1
+                }
+            }
+        }
+        val layoutManager = GridLayoutManager(this, 2)
+        layoutManager.spanSizeLookup = spanSizeLookup
+        binding.rvFotos.layoutManager = layoutManager
+        fotosAdapter = FotosAdapter(fotos, Glide.with(this), singleClickFoto, longClickFoto)
+        binding.rvFotos.adapter = fotosAdapter
     }
 
     private val singleClickFoto = { foto: Foto ->
         Toast.makeText(this, "Id: ${foto.imgAddress}", Toast.LENGTH_SHORT).show()
+    }
+
+    private val longClickFoto = { foto: Foto ->
+        viewModel.deleteFoto(idFoto = foto.id ?: 0, imgAddress = foto.imgAddress )
     }
 
     private fun dialogAddStep(){
@@ -112,14 +169,14 @@ class AdicionarActivity: AppCompatActivity() {
             setCancelable(true)
         }.show()
 
-        bind.edtDetail.focusable
-
         bind.btnAddStep.setOnClickListener {
             val stepText = bind.edtDetail.editableText.toString()
             if(stepText.isNotBlank()){
-                viewModel.addNewStep(step = Step(info = stepText))
+                hideKeyboard()
+                viewModel.addNewStep(stepText = stepText)
                 customDialog.dismiss()
             }else{
+                hideKeyboard()
                 customDialog.dismiss()
             }
         }
@@ -131,7 +188,7 @@ class AdicionarActivity: AppCompatActivity() {
     }
 
     private fun dialogAddFoto(){
-        if(!PermissionUtils.verifyPermissions(this, 1)){
+        if(!PermissionUtils.verifyPermissions(this, 999)){
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cameraIntent, REQUEST_CODE)
         } else{
@@ -143,7 +200,25 @@ class AdicionarActivity: AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null){
             val imageFile = data.extras?.get("data") as Bitmap
-            viewModel.addNewFoto(Foto(imgAddress = viewModel.createImageFile(imageFile)))
+            viewModel.addNewFoto(imgAddress = viewModel.createImageFile(imageFile))
+        }
+    }
+
+    private fun showConfirmationDialog(msg: String){
+        val customDialog = AlertDialog.Builder(this).create()
+        val bind: DialogAddedOkBinding = DialogAddedOkBinding.inflate(LayoutInflater.from(this))
+        customDialog.apply {
+            setView(bind.root)
+            setCancelable(false)
+        }.show()
+
+        bind.txtTitleDialogStep.text = msg
+
+        bind.btnOK.setOnClickListener {
+            customDialog.dismiss()
+            finish()
+            super.onBackPressed()
         }
     }
 }
+

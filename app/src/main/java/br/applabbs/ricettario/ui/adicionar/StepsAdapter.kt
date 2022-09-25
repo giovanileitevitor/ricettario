@@ -3,21 +3,20 @@ package br.applabbs.ricettario.ui.adicionar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import br.applabbs.ricettario.R
-import br.applabbs.ricettario.domain.local.models.Foto
-import com.bumptech.glide.RequestManager
+import br.applabbs.ricettario.domain.local.models.Step
 
-class RvFotosAdapter(
-    private val data: List<Foto>,
-    private val mGlide: RequestManager,
-    private val itemListener: (Foto) -> Unit
-): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class StepsAdapter(
+    private val data: List<Step>,
+    private val itemListener: (Step) -> Unit,
+    private val itemLongListener: (Step) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val viewModel: View = inflater.inflate(R.layout.item_imagem_receita, parent, false)
+        val viewModel: View = inflater.inflate(R.layout.item_step, parent, false)
         return DefaultVH(viewModel)
     }
 
@@ -30,13 +29,21 @@ class RvFotosAdapter(
     }
 
     private inner class DefaultVH(itemView: View): RecyclerView.ViewHolder(itemView){
-        var photo: ImageView = itemView.findViewById(R.id.imgReceita)
+        var id: TextView = itemView.findViewById(R.id.txtIdStep)
+        var info: TextView = itemView.findViewById(R.id.txtStep)
 
         init{
             itemView.setOnClickListener {
                 val position = adapterPosition
                 val item = data[position]
                 itemListener.invoke(item)
+            }
+
+            itemView.setOnLongClickListener {
+                val position = adapterPosition
+                val item = data[position]
+                itemLongListener(item)
+                return@setOnLongClickListener true
             }
         }
     }
@@ -45,8 +52,8 @@ class RvFotosAdapter(
         val item = data[position]
         val defaultVH = holder as DefaultVH
 
-        mGlide.load(item.imgAddress)
-            .placeholder(R.drawable.img_receita)
-            .into(defaultVH.photo)
+        defaultVH.id.text = (position+1).toString() + " ->"
+        defaultVH.info.text = item.info
     }
+
 }
