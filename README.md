@@ -1,6 +1,5 @@
 # Ricettario App
 
-Hi Developer! 👷🏽‍♂️
 
 The **Ricettario App** is Android App was designed for cooks and other health professionals
 so they can store and share recipes.
