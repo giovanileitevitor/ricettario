@@ -65,8 +65,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:textColor="@color/black"
         android:text="-error-"
+        android:textColor="@color/black"
         android:textSize="@dimen/font_size_20"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/label_apagar"
@@ -74,6 +74,17 @@
         app:layout_constraintTop_toTopOf="@id/label_apagar"
         tools:text="10" />
 
+    <Button
+        android:id="@+id/btnCrash"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/black"
+        android:text="-"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/txt_qtd_contatos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/txt_qtd_contatos"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -88,6 +99,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerName"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="?selectableItemBackground">

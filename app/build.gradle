@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    //id 'example.tracerplugin' version '1.0.0'
+    id 'checkstyle'
 }
 
 android {
@@ -71,6 +71,9 @@ dependencies {
 
     // ViewModel
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
 
     // MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -87,5 +90,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     androidTestImplementation "androidx.room:room-testing:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
+
+    //Gson
+    implementation "com.google.code.gson:gson:2.9.1"
 
 }

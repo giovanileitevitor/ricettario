@@ -31,6 +31,10 @@ class ConfigurarActivity: AppCompatActivity() {
             super.onBackPressed()
         }
 
+        binding.btnCrash.onDebouncedListener{
+            throw Error("i m the crash")
+        }
+
         binding.txtLinkedin.onDebouncedListener {
             val link = "https://www.linkedin.com/in/giovani-leite-vitor-7803961b9/"
             startActivity(

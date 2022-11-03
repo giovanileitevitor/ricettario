@@ -24,7 +24,6 @@ import br.applabbs.ricettario.ui.exibir.ExibirActivity
 import com.bumptech.glide.Glide
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class HomeActivity : AppCompatActivity() {
 
     private val viewModel : HomeViewModel by viewModel()

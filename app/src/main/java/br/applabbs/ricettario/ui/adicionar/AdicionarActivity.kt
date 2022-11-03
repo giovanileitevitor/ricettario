@@ -135,14 +135,12 @@ class AdicionarActivity: AppCompatActivity() {
     }
 
     private fun setupFotosRv(fotos: List<Foto>){
-        val qtdFotos = fotos.size
-
         val spanSizeLookup = object : GridLayoutManager.SpanSizeLookup(){
             override fun getSpanSize(position: Int): Int {
-                return if((qtdFotos % 2 != 0) && (position == 0)){
-                    2
+                return if((fotos.size % MAX_ITENS != 0) && (position == 0)){
+                    MAX_ITENS
                 }else{
-                    1
+                    MIN_ITENS
                 }
             }
         }
@@ -219,6 +217,11 @@ class AdicionarActivity: AppCompatActivity() {
             finish()
             super.onBackPressed()
         }
+    }
+
+    companion object{
+        private const val MAX_ITENS = 2
+        private const val MIN_ITENS = 1
     }
 }
 
