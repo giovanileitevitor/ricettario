@@ -24,9 +24,16 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "3.0"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+apply from :"$rootProject.rootDir/scripts/output-archive.gradle"
+apply from :"$rootProject.rootDir/scripts/email-commit.gradle"
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
     kotlinOptions {
