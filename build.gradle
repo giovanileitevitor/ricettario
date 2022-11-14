@@ -30,6 +30,14 @@ task clean(type: Delete) {
 
 apply from :"$rootProject.rootDir/scripts/output-archive.gradle"
 apply from :"$rootProject.rootDir/scripts/email-commit.gradle"
+apply plugin: "jacoco"
+
+//jacocoTestReport {
+//    reports {
+//        xml.enabled = true
+//        html.enabled = true
+//    }
+//}
 
 //
 //tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {

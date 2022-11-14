@@ -42,8 +42,8 @@ jobs:
       - name: Gradle Build and generating apk files
         run: ./gradlew build
 
-      - name: Code Coverage test - Jacoco
-        run: ./gradlew jacocoTest
+#      - name: Code Coverage test - Jacoco
+#        run: ./gradlew jacocoTestReport
 
       - name: Cache SonarQube packages
         uses: actions/cache@v1
@@ -51,7 +51,6 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
-
 
       - name: Cache Gradle packages
         uses: actions/cache@v1
