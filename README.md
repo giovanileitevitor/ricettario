@@ -1,8 +1,8 @@
 # Ricettario App
 
 
-The **Ricettario App** is Android App was designed for cooks and other health professionals
-so they can store and share recipes.
+The **Ricettario App** is designed for amateur cooks and people passionate about cooking.
+So they can store and share his recipes or tricks used on kitchen.
 
 ## Project Details:
 - Designed in pure Kotlin Language
@@ -16,4 +16,3 @@ so they can store and share recipes.
 #### Save recipes as Favorites
 #### Delete recipes
 #### Search specific recipes
-#### Error handler
