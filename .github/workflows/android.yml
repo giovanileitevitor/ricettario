@@ -3,7 +3,7 @@ name: Android CI and CD
 on:
   push:
     branches:
-      - main
+      - master
       - qa
       - develop
   pull_request:
@@ -16,6 +16,7 @@ env:
 
 jobs:
   build:
+    name: Build app
     runs-on:
       - ubuntu-latest
 
@@ -42,16 +43,15 @@ jobs:
       - name: Gradle Build and generating apk files
         run: ./gradlew build
 
-      - name: Code Coverage test - Jacoco
-        run: ./gradlew jacocoTest
+#      - name: Code Coverage test - Jacoco
+#        run: ./gradlew jacocoTestReport
 
-      - name: Cache SonarQube packages
-        uses: actions/cache@v1
-        with:
-          path: ~/.sonar/cache
-          key: ${{ runner.os }}-sonar
-          restore-keys: ${{ runner.os }}-sonar
-
+#      - name: Cache SonarQube packages
+#        uses: actions/cache@v1
+#        with:
+#          path: ~/.sonar/cache
+#          key: ${{ runner.os }}-sonar
+#          restore-keys: ${{ runner.os }}-sonar
 
       - name: Cache Gradle packages
         uses: actions/cache@v1
@@ -60,11 +60,11 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
 
-      - name: Code Scan Analysis - SonarQube
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        run: ./gradlew sonarqube -Dsonar.projectKey=android-demo-app
+#      - name: Code Scan Analysis - SonarQube
+#        env:
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+#        run: ./gradlew sonarqube -Dsonar.projectKey=android-demo-app
 
       - name: Date and Time
         run: echo "::set-output name=current_date_time::$(date +"%d-%m-%Y-%H-%I-%M-%S")"

@@ -120,7 +120,7 @@ class AdicionarViewModel(
         }
     }
 
-    fun updateScreen(type: Int){
+    private fun updateScreen(type: Int){
         viewModelScope.launch(Dispatchers.IO) {
             when(type){
                 UPDATE_STEPS -> _getSteps.postValue(receitaUseCase.getSteps(isTemporary = true))
@@ -129,7 +129,7 @@ class AdicionarViewModel(
         }
     }
 
-    fun updateObjects(idReceita : Int){
+    private fun updateObjects(idReceita : Int){
         viewModelScope.launch(Dispatchers.IO) {
             receitaUseCase.updateSteps(idReceita = idReceita)
             receitaUseCase.updateFotos(idReceita = idReceita)

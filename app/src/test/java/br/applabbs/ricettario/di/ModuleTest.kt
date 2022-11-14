@@ -7,6 +7,7 @@ import br.applabbs.ricettario.ui.exibir.ExibirViewModel
 import br.applabbs.ricettario.ui.home.HomeViewModel
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Test
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -17,6 +18,7 @@ import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.mockito.Mockito
 
+@Ignore
 class ModuleTest: KoinTest {
 
     @Before

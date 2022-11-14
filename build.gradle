@@ -1,9 +1,5 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext{
-        roomVersion = '2.3.0'
-    }
-
 
     repositories {
         google()
@@ -24,29 +20,45 @@ buildscript {
     }
 }
 
+plugins {
+    id "org.sonarqube" version "3.0"
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-    kotlinOptions {
-        freeCompilerArgs += "-Xopt-in=io.ktor.util.KtorExperimentalAPI"
-    }
-}
+apply from :"$rootProject.rootDir/scripts/output-archive.gradle"
+apply from :"$rootProject.rootDir/scripts/email-commit.gradle"
+apply plugin: "jacoco"
 
-tasks.withType(Checkstyle){
-    reports{
-        xml.required = false
-        html.required = true
-        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
-    }
-}
+//jacocoTestReport {
+//    reports {
+//        xml.enabled = true
+//        html.enabled = true
+//    }
+//}
 
-configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        def requested = details.requested
-        if (requested.group == 'org.jetbrains.kotlin' && requested.name == 'kotlin-reflect') {
-            details.useVersion kotlin_version
-        }
-    }
-}
+//
+//tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+//    kotlinOptions {
+//        freeCompilerArgs += "-Xopt-in=io.ktor.util.KtorExperimentalAPI"
+//    }
+//}
+//
+//tasks.withType(Checkstyle){
+//    reports{
+//        xml.required = false
+//        html.required = true
+//        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
+//    }
+//}
+//
+//configurations.all {
+//    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//        def requested = details.requested
+//        if (requested.group == 'org.jetbrains.kotlin' && requested.name == 'kotlin-reflect') {
+//            details.useVersion kotlin_version
+//        }
+//    }
+//}
