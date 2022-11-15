@@ -6,6 +6,7 @@ buildscript {
         google()
         mavenCentral()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots'}
+        maven {url "https://plugins.gradle.org/m2/"}
         jcenter()
     }
     dependencies {
@@ -13,6 +14,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.3.13'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.5.0.2730"
         classpath 'org.jacoco:org.jacoco.core:0.8.6'
         //classpath 'com.google.firebase:firebase-appdistribution-gradle:3.0.3'
     }
@@ -20,6 +22,7 @@ buildscript {
 
 allprojects {
     apply plugin: 'jacoco'
+    apply plugin: "org.sonarqube"
 }
 
 //plugins {

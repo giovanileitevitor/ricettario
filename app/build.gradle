@@ -107,12 +107,14 @@ dependencies {
 
 }
 
-//sonarqube {
-//    properties {
-//        property "sonar.projectKey", "android-app"
-//        property "sonar.projectName", "android-app"
-//    }
-//}
+sonar {
+    properties {
+        property "sonar.projectName", "ricettario"
+        property "sonar.projectKey", "ricettario"
+        property "sonar.login", "admin"
+        property "sonar.password", "admin"
+    }
+}
 
 apply from: "$rootProject.rootDir/scripts/move-apk.gradle"
 apply from: "$rootProject.rootDir/scripts/jacoco.gradle"
