@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   clear-cache:
+    name: Cleaning Github Pipeline Cache Memory
     runs-on: ubuntu-latest
     steps:
       - name: Clear cache

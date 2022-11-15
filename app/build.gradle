@@ -7,6 +7,10 @@ plugins {
     id 'com.google.firebase.crashlytics'
 }
 
+jacoco{
+    toolVersion = '0.8.5'
+}
+
 android {
     compileSdk 31
 
@@ -24,6 +28,7 @@ android {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            testCoverageEnabled false
             //signingConfig signingConfigs.release
         }
 
@@ -31,6 +36,7 @@ android {
             debuggable true
             minifyEnabled false
             shrinkResources false
+            testCoverageEnabled true
         }
     }
     compileOptions {
@@ -47,9 +53,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
+
 }
 
 dependencies {
@@ -103,11 +107,12 @@ dependencies {
 
 }
 
-sonarqube {
-    properties {
-        property "sonar.projectKey", "android-app"
-        property "sonar.projectName", "android-app"
-    }
-}
+//sonarqube {
+//    properties {
+//        property "sonar.projectKey", "android-app"
+//        property "sonar.projectName", "android-app"
+//    }
+//}
 
 apply from: "$rootProject.rootDir/scripts/move-apk.gradle"
+apply from: "$rootProject.rootDir/scripts/jacoco.gradle"

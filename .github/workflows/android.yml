@@ -43,8 +43,8 @@ jobs:
       - name: Gradle Build and generating apk files
         run: ./gradlew build
 
-#      - name: Code Coverage test - Jacoco
-#        run: ./gradlew jacocoTestReport
+      - name: Code Coverage test - Jacoco
+        run: ./gradlew jacoco
 
 #      - name: Cache SonarQube packages
 #        uses: actions/cache@v1
