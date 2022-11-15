@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "490183603472",
+    "project_id": "ricettario-app",
+    "storage_bucket": "ricettario-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:490183603472:android:26e8c537d1f7d525ee6195",
+        "android_client_info": {
+          "package_name": "br.applabbs.ricettario"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "490183603472-kp418ibdpb44go1ieo1pnapaek0qccu1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_F0JKD8xwJZ4jKWHJZFVC_62vEJ_TrOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "490183603472-kp418ibdpb44go1ieo1pnapaek0qccu1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

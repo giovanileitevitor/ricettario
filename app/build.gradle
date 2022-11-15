@@ -3,6 +3,12 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'checkstyle'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
+jacoco{
+    toolVersion = '0.8.5'
 }
 
 android {
@@ -22,6 +28,7 @@ android {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            testCoverageEnabled false
             //signingConfig signingConfigs.release
         }
 
@@ -29,6 +36,7 @@ android {
             debuggable true
             minifyEnabled false
             shrinkResources false
+            testCoverageEnabled true
         }
     }
     compileOptions {
@@ -45,9 +53,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
-    testOptions {
-        unitTests.returnDefaultValues = true
-    }
+
 }
 
 dependencies {
@@ -94,13 +100,21 @@ dependencies {
     //Gson
     implementation "com.google.code.gson:gson:2.9.1"
 
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:31.0.3')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
 }
 
-sonarqube {
+sonar {
     properties {
-        property "sonar.projectKey", "android-app"
-        property "sonar.projectName", "android-app"
+        property "sonar.projectName", "ricettario"
+        property "sonar.projectKey", "ricettario"
+        property "sonar.login", "admin"
+        property "sonar.password", "admin"
     }
 }
 
 apply from: "$rootProject.rootDir/scripts/move-apk.gradle"
+apply from: "$rootProject.rootDir/scripts/jacoco.gradle"

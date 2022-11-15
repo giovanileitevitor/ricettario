@@ -1,28 +1,34 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext.kotlin_version = '1.6.10'
 
     repositories {
         google()
         mavenCentral()
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots'}
+        maven {url "https://plugins.gradle.org/m2/"}
         jcenter()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.0"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.3.13'
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.1'
-        //classpath 'com.github.triplet.gradle:play-publisher:3.7.0-SNAPSHOT'
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.5.0.2730"
+        classpath 'org.jacoco:org.jacoco.core:0.8.6'
         //classpath 'com.google.firebase:firebase-appdistribution-gradle:3.0.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
-plugins {
-    id "org.sonarqube" version "3.0"
+allprojects {
+    apply plugin: 'jacoco'
+    apply plugin: "org.sonarqube"
 }
+
+//plugins {
+//    id "org.sonarqube" version "3.0"
+//    id 'jacoco'
+//}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
@@ -30,21 +36,15 @@ task clean(type: Delete) {
 
 apply from :"$rootProject.rootDir/scripts/output-archive.gradle"
 apply from :"$rootProject.rootDir/scripts/email-commit.gradle"
-apply plugin: "jacoco"
+//apply from: "$rootProject.rootDir/scripts/jacoco.gradle"
 
-//jacocoTestReport {
-//    reports {
-//        xml.enabled = true
-//        html.enabled = true
-//    }
-//}
 
-//
-//tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-//    kotlinOptions {
-//        freeCompilerArgs += "-Xopt-in=io.ktor.util.KtorExperimentalAPI"
-//    }
-//}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        freeCompilerArgs += "-Xopt-in=io.ktor.util.KtorExperimentalAPI"
+    }
+}
 //
 //tasks.withType(Checkstyle){
 //    reports{
