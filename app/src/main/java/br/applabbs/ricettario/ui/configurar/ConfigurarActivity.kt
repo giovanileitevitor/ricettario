@@ -19,7 +19,6 @@ class ConfigurarActivity: AppCompatActivity() {
         binding = ActivityConfigurarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupListeners()
-        setupObservers()
     }
 
     override fun onBackPressed() {
@@ -32,8 +31,8 @@ class ConfigurarActivity: AppCompatActivity() {
         }
 
         binding.btnCrash.onDebouncedListener{
-            //throw Error("i m the crash")
-            throw RuntimeException("i m the crash")
+            throw Error("i m the crash")
+            //throw RuntimeException("i m the crash")
         }
 
         binding.txtLinkedin.onDebouncedListener {
@@ -55,10 +54,6 @@ class ConfigurarActivity: AppCompatActivity() {
                 )
             )
         }
-    }
-
-    private fun setupObservers(){
-
     }
 
 }

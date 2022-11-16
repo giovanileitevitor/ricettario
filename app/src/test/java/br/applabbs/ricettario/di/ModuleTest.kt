@@ -18,7 +18,7 @@ import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.mockito.Mockito
 
-@Ignore
+@Ignore(value = "under analysys why is failing")
 class ModuleTest: KoinTest {
 
     @Before

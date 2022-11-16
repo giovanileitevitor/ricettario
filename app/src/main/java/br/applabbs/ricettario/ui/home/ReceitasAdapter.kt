@@ -37,8 +37,6 @@ class ReceitasAdapter(
         var photo: ImageView = itemView.findViewById(R.id.imgPrincipal)
         var titulo: TextView = itemView.findViewById(R.id.txtTitulo)
         var estrelas: ImageView = itemView.findViewById(R.id.imgStars)
-        //var signo: TextView = itemView.findViewById(R.id.txt_signo)
-        //var obs: TextView = itemView.findViewById(R.id.txt_obs)
 
         init{
             itemView.setOnClickListener {

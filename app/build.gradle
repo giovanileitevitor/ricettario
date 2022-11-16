@@ -111,8 +111,25 @@ sonar {
     properties {
         property "sonar.projectName", "ricettario"
         property "sonar.projectKey", "ricettario"
+        property "sonar.host.url", "http://localhost:9000"
+        property "sonar.language", "kotlin"
         property "sonar.login", "admin"
         property "sonar.password", "admin"
+        property "sonar.sources", "src"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.tests", ["src/test/java"]
+        property "sonar.test.inclusions", "**/*Test*/**"
+        property "sonar.exclusions", '**/.gradle/**,' +
+                "**/androidTest/**," +
+                "**/R.class," +
+                "**/BuildConfig.*," +
+                "**/Manifest*.*," +
+                "**/android/databinding/*," +
+                "**/androidx/databinding/*," +
+                "**/*MapperImpl*.*," +
+                "**/BuildConfig.*," +
+                "**/Manifest*.*," +
+                "**/google-services.json"
     }
 }
 

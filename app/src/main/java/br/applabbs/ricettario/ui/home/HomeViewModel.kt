@@ -1,6 +1,5 @@
 package br.applabbs.ricettario.ui.home
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val context: Context,
     private val receitaUseCase: ReceitaUseCase
 ): ViewModel() {
 

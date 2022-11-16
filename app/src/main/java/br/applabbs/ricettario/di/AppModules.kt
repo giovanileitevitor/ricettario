@@ -16,11 +16,9 @@ object AppModules{
 
     val viewModelModule = module {
         viewModel { HomeViewModel(
-            context = get(),
             receitaUseCase = get()
         ) }
         viewModel { ConfigurarViewModel(
-            context = get(),
             receitaUseCase = get()
         ) }
         viewModel { AdicionarViewModel(
@@ -28,14 +26,23 @@ object AppModules{
             receitaUseCase = get()
         ) }
         viewModel { ExibirViewModel(
-            context = get(),
             receitaUseCase = get()
         ) }
     }
 
     val localUseCasesModule = module {
-        factory<ReceitaUseCase> { ReceitaUseCaseImpl(localRepository = get()) }
-        factory<LocalRepository>{ LocalRepositoryImpl(stepDao = get(), receitaDao = get(), fotoDao = get()) }
+        factory<ReceitaUseCase> {
+            ReceitaUseCaseImpl(
+                localRepository = get()
+            )
+        }
+        factory<LocalRepository>{
+            LocalRepositoryImpl(
+                stepDao = get(),
+                receitaDao = get(),
+                fotoDao = get()
+            )
+        }
     }
 
     val localRepositoriesModule = module {
@@ -45,11 +52,4 @@ object AppModules{
         single { get<LocalDB>().fotoDao() }
     }
 
-//    val remoteUseCasesModule = module(override = true) {
-//
-//    }
-//
-//    val mappersModule = module(override = true) {
-//
-//    }
 }

@@ -38,7 +38,7 @@ fun geradorReceitas(qtd: Int): ArrayList<Receita>{
                 id = i,
                 titulo = if(i%2 !=0) "Pudim cremoso" else "Coxinha recheada",
                 img = "A pessoa possui",
-                isFavorito = if(i%2 !=0) true else false,
+                isFavorito = i%2 !=0,
                 steps = steps,
                 fotos = fotos
             )
