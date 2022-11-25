@@ -15,6 +15,11 @@ env:
   AWS_DEFAULT_REGION: "ap-south-1"
 
 jobs:
+  test:
+    name: Run Unit Tests
+    runs-on:
+      - ubuntu-latest
+
   build:
     name: Build app
     runs-on:
@@ -170,3 +175,7 @@ jobs:
         with:
           github-token: ${{ secrets.CI_GITHUB_TOKEN  }}
           webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
+
+
+    share:
+      name: Share app for Firebase Distribution system

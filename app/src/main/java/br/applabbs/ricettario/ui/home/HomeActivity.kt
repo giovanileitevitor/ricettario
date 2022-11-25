@@ -11,6 +11,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.applabbs.ricettario.R
 import br.applabbs.ricettario.aux.emptyReceita
 import br.applabbs.ricettario.aux.onDebouncedListener
 import br.applabbs.ricettario.databinding.ActivityHomeBinding
@@ -115,9 +116,16 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun showQtdReceitas(qtdReceitas : Int){
-        val auxText : String = if(qtdReceitas == 1){ "receita disponível"} else{ "receitas disponíveis"}
-        binding.txtQtdReceitas.text = "$qtdReceitas $auxText"
+        binding.txtQtdReceitas.text = "$qtdReceitas ${showTexts(qtdReceitas = qtdReceitas)}"
         binding.txtQtdReceitas.visibility = VISIBLE
+    }
+
+    private fun showTexts(qtdReceitas: Int): String{
+        return if(qtdReceitas == 1){
+            baseContext.getString(R.string.txt_qtd_receita)
+        } else{
+            baseContext.getString(R.string.txt_qtd_receitas)
+        }
     }
 
     private fun setupAdapterDetalhesReceita(steps: List<Step>){
@@ -127,7 +135,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private val singleClickStep = { step: Step ->
-        showToast("${step.info}")
+        showToast(msg = step.info)
     }
 
     private fun showDialogSearch(){

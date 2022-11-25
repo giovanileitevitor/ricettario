@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Ricettario</string>
+
+<!-- Home Activity   -->
+    <string name="txt_qtd_receita">receita disponível</string>
+    <string name="txt_qtd_receitas">receitas disponíveis</string>
 </resources>
