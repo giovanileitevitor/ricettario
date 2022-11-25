@@ -33,12 +33,31 @@ android {
         }
 
         debug {
+            versionNameSuffix '-DEBUG'
             debuggable true
             minifyEnabled false
             shrinkResources false
             testCoverageEnabled true
         }
     }
+
+//    flavorDimensions "version"
+//
+//    productFlavors{
+//        full {
+//            dimension = "version"
+//            applicationIdSuffix = ".full"
+//            versionNameSuffix "-full"
+//            versionName "1.0.0"
+//        }
+//        limited {
+//            dimension = "version"
+//            applicationIdSuffix = ".limited"
+//            versionNameSuffix "-limited"
+//            versionName "0.0.1"
+//        }
+//    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8

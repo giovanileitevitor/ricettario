@@ -9,7 +9,13 @@
       "client_info": {
         "mobilesdk_app_id": "1:490183603472:android:26e8c537d1f7d525ee6195",
         "android_client_info": {
-          "package_name": "br.applabbs.ricettario"
+          "package_name": "br.applabbs.ricettario.limited"
+        }
+      },
+      "client_info": {
+        "mobilesdk_app_id": "1:490183603472:android:26e8c537d1f7d525ee6195",
+        "android_client_info": {
+          "package_name": "br.applabbs.ricettario.full"
         }
       },
       "oauth_client": [
