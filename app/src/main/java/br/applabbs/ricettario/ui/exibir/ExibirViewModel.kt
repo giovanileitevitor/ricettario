@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.applabbs.ricettario.domain.local.models.Foto
 import br.applabbs.ricettario.domain.local.usecases.ReceitaUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ExibirViewModel(
@@ -17,7 +18,7 @@ class ExibirViewModel(
     private lateinit var fotos : List<Foto>
 
     fun getFotosReceita(idReceita: Int){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
            _getFotos.postValue(receitaUseCase.getFotos(isTemporary = true))
         }
     }

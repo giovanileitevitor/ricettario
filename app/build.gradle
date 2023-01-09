@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.ManagedVirtualDevice
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -25,18 +27,27 @@ android {
 
     buildTypes {
         release {
+            //signingConfig signingConfigs.release
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             testCoverageEnabled false
-            //signingConfig signingConfigs.release
+            manifestPlaceholders = [
+                    appIcon:  "@mipmap/ic_riccetario_release",
+                    appName: "@string/app_name_release"
+            ]
         }
 
         debug {
+            applicationIdSuffix ".debug"
             debuggable true
             minifyEnabled false
             shrinkResources false
             testCoverageEnabled true
+            manifestPlaceholders = [
+                    appIcon:  "@mipmap/ic_riccetario_debug",
+                    appName: "@string/app_name_debug"
+            ]
         }
     }
     compileOptions {
@@ -52,6 +63,19 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+    testOptions{
+        emulatorSnapshots {
+            enableForTestFailures = true
+        }
+        devices{
+            pixel2api29(ManagedVirtualDevice){
+                device = "Pixel 2"
+                apiLevel = 29
+                systemImageSource = "google"
+                abi =  "x86"
+            }
+        }
     }
 
 }

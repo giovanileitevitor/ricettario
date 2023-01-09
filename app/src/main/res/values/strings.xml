@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">Ricettario</string>
+    <string name="app_name_release">Ricettario Alpha</string>
+    <string name="app_name_debug">Ricettario Beta</string>
 
 <!-- Home Activity   -->
     <string name="txt_qtd_receita">receita disponível</string>

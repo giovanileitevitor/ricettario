@@ -157,6 +157,8 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun showOptionsDialog(receita: Receita){
         val customDialog = AlertDialog.Builder(this).create()
         val bind : DialogActionsReceitaBinding = DialogActionsReceitaBinding.inflate(LayoutInflater.from(this))

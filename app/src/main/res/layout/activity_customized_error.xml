@@ -15,7 +15,7 @@
         android:layout_marginTop="80dp"
         android:fontFamily="@font/advent_pro"
         android:gravity="center"
-        android:text="@string/app_name"
+        android:text="@string/app_name_release"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_44"
         android:textStyle="bold"
