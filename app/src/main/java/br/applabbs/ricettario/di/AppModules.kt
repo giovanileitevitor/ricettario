@@ -1,8 +1,12 @@
 package br.applabbs.ricettario.di
 
+import br.applabbs.pixells.ui.home.HomePixelViewModel
+import br.applabbs.pixells.ui.splash.SplashPixelViewModel
 import br.applabbs.ricettario.data.local.db.LocalDB
 import br.applabbs.ricettario.data.local.repositories.LocalRepository
 import br.applabbs.ricettario.data.local.repositories.LocalRepositoryImpl
+import br.applabbs.ricettario.domain.local.usecases.LocalDataUseCase
+import br.applabbs.ricettario.domain.local.usecases.LocalDataUseCaseImpl
 import br.applabbs.ricettario.domain.local.usecases.ReceitaUseCase
 import br.applabbs.ricettario.domain.local.usecases.ReceitaUseCaseImpl
 import br.applabbs.ricettario.ui.adicionar.AdicionarViewModel
@@ -19,7 +23,8 @@ object AppModules{
             receitaUseCase = get()
         ) }
         viewModel { ConfigurarViewModel(
-            receitaUseCase = get()
+            receitaUseCase = get(),
+            localDataUseCase = get()
         ) }
         viewModel { AdicionarViewModel(
             context = get(),
@@ -27,6 +32,14 @@ object AppModules{
         ) }
         viewModel { ExibirViewModel(
             receitaUseCase = get()
+        ) }
+
+        viewModel { SplashPixelViewModel(
+
+        ) }
+
+        viewModel { HomePixelViewModel(
+
         ) }
     }
 
@@ -42,6 +55,9 @@ object AppModules{
                 receitaDao = get(),
                 fotoDao = get()
             )
+        }
+        factory<LocalDataUseCase> {
+            LocalDataUseCaseImpl()
         }
     }
 

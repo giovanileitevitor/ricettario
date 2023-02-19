@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base Strings    -->
+    <string name="img_content_description">image</string>
+    <string name="btn_content_description">button</string>
+
+    <!-- SplashActivity String resources   -->
+    <string name="txt_pixell_app">Pixells App</string>
+    <string name="txt_from">From:</string>
+    <string name="txt_designed_by">Designed by \n<b>Giovani Leite Vitor</b></string>
+
+    <!-- Home Activity String resources   -->
+    <string name="btn_menu">Menu</string>
+
+</resources>

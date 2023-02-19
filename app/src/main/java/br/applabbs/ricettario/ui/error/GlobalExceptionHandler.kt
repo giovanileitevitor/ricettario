@@ -3,6 +3,8 @@ package br.applabbs.ricettario.ui.error
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import kotlin.system.exitProcess
 
@@ -26,6 +28,7 @@ class GlobalExceptionHandler private constructor(
         activity: Class<*>,
         exception: Throwable
     ) {
+        Firebase.crashlytics.recordException(exception)
         val crashedIntent = Intent(applicationContext, activity).also {
             it.putExtra(INTENT_DATA_NAME, Gson().toJson(exception))
         }

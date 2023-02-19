@@ -1,6 +1,7 @@
 package br.applabbs.ricettario.aux
 
 import android.app.Activity
+import android.app.ActivityManager.RunningAppProcessInfo
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -8,6 +9,7 @@ import br.applabbs.ricettario.domain.local.models.Foto
 import br.applabbs.ricettario.domain.local.models.Receita
 import br.applabbs.ricettario.domain.local.models.Step
 import kotlin.random.Random
+
 
 fun geradorReceitas(qtd: Int): ArrayList<Receita>{
     val list = ArrayList<Receita>()
