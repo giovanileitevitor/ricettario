@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import br.applabbs.pixells.ui.splash.SplashPixelActivity
 import br.applabbs.ricettario.aux.BaseActivity
 import br.applabbs.ricettario.aux.onDebouncedListener
 import br.applabbs.ricettario.databinding.ActivityConfigurarBinding
@@ -78,8 +77,7 @@ class ConfigurarActivity: BaseActivity() {
         }
 
         binding.btnPixells.setOnClickListener{
-            val intent = Intent(this, SplashPixelActivity::class.java)
-            startActivity(intent)
+
         }
 
         binding.txtLinkedin.onDebouncedListener {

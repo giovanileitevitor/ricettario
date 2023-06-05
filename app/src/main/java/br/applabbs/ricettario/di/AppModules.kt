@@ -1,7 +1,5 @@
 package br.applabbs.ricettario.di
 
-import br.applabbs.pixells.ui.home.HomePixelViewModel
-import br.applabbs.pixells.ui.splash.SplashPixelViewModel
 import br.applabbs.ricettario.data.local.db.LocalDB
 import br.applabbs.ricettario.data.local.repositories.LocalRepository
 import br.applabbs.ricettario.data.local.repositories.LocalRepositoryImpl
@@ -34,13 +32,6 @@ object AppModules{
             receitaUseCase = get()
         ) }
 
-        viewModel { SplashPixelViewModel(
-
-        ) }
-
-        viewModel { HomePixelViewModel(
-
-        ) }
     }
 
     val localUseCasesModule = module {
