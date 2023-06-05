@@ -57,10 +57,6 @@ class ConfigurarActivity: BaseActivity() {
         Log.d("APP", "on Restart")
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
-
     private fun setupListeners(){
         binding.btnVoltar.onDebouncedListener {
             super.onBackPressed()
@@ -74,10 +70,6 @@ class ConfigurarActivity: BaseActivity() {
         binding.btnAlarm.setOnClickListener {
             val time = LocalDate.now()
             viewModel.startAlarm()
-        }
-
-        binding.btnPixells.setOnClickListener{
-
         }
 
         binding.txtLinkedin.onDebouncedListener {

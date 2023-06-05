@@ -87,26 +87,15 @@
         app:layout_constraintTop_toTopOf="@id/txt_qtd_contatos"/>
 
     <Button
+        android:id="@+id/btnAlarm"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:id="@+id/btnAlarm"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="@dimen/size_40"
         android:text="Start Alarm"
         android:textColor="@color/white"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="@dimen/size_40"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/label_apagar"/>
-
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnPixells"
-        android:text="Go to Pixells App"
-        android:textColor="@color/white"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="@dimen/size_40"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAlarm"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -174,7 +163,6 @@
                 android:textSize="@dimen/font_size_18"
                 app:layout_constraintStart_toEndOf="@id/picture_1"
                 app:layout_constraintTop_toBottomOf="@id/txtLinkedin"/>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

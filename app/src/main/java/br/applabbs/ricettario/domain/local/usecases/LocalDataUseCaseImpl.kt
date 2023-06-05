@@ -3,7 +3,7 @@ package br.applabbs.ricettario.domain.local.usecases
 import android.content.SharedPreferences
 import java.sql.Time
 
-class LocalDataUseCaseImpl(): LocalDataUseCase {
+class LocalDataUseCaseImpl : LocalDataUseCase {
 
     override suspend fun isTimerFinished(currentTime: Time): Boolean {
         //Compare the current date with last date stored

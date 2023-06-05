@@ -28,12 +28,8 @@ class ExibirActivity : AppCompatActivity(){
         setupObservers()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-    }
-
     private fun setupView(){
-        idReceita = intent.getIntExtra("idReceita", 0) ?: 0
+        idReceita = intent.getIntExtra("idReceita", 0)
         viewModel.getFotosReceita(idReceita = idReceita)
     }
 

@@ -1,6 +1,4 @@
 package br.applabbs.ricettario.data.remote.repositories
 
 
-interface RemoteRepository {
-
-}
+interface RemoteRepository
