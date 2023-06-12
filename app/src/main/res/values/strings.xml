@@ -5,4 +5,9 @@
 <!-- Home Activity   -->
     <string name="txt_qtd_receita">receita disponível</string>
     <string name="txt_qtd_receitas">receitas disponíveis</string>
+
+<!--    Inventario resources-->
+    <string name="inventario_title">Inventtario</string>
+    <string name="add_item">Add Item</string>
+    <string name="btn_salvar">Salvar</string>
 </resources>

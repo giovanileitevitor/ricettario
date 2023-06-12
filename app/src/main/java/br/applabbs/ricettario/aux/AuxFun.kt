@@ -7,6 +7,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import br.applabbs.ricettario.domain.local.models.Foto
 import br.applabbs.ricettario.domain.local.models.Receita
+import br.applabbs.ricettario.domain.local.models.Registro
 import br.applabbs.ricettario.domain.local.models.Step
 import kotlin.random.Random
 
@@ -92,8 +93,27 @@ fun emptyReceita(): List<Receita>{
     return emptyReceita
 }
 
+fun geradorRegistros(qtd: Int): ArrayList<Registro>{
+    val registros = ArrayList<Registro>()
+    for (i in 1..qtd){
+        registros.add(
+            Registro(
+                idRegistro = i,
+                productName = "Item $i",
+                productBrand = "Brand xxx$i",
+                qtd = "10 botles",
+                productVality = "10th / jun / 2023",
+                dateRegister = "10th/jun/2023 - 10:45hs",
+                hasImage = true,
+                imageAddress = "not available"
+            )
+        )
+    }
+    return registros
+}
+
 fun randomicInteger(): Int {
-    return Random.nextInt(1, 99999)
+    return Random.nextInt(1, 15)
 }
 
 fun Activity.hideKeyboard() {

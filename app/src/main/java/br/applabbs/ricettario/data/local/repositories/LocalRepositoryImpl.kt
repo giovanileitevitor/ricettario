@@ -2,16 +2,19 @@ package br.applabbs.ricettario.data.local.repositories
 
 import br.applabbs.ricettario.data.local.dao.FotoDao
 import br.applabbs.ricettario.data.local.dao.ReceitaDao
+import br.applabbs.ricettario.data.local.dao.RegistroDao
 import br.applabbs.ricettario.data.local.dao.StepDao
 import br.applabbs.ricettario.data.local.entities.FotoEntity
 import br.applabbs.ricettario.data.local.entities.ReceitaEntity
+import br.applabbs.ricettario.data.local.entities.RegistroEntity
 import br.applabbs.ricettario.data.local.entities.StepEntity
 import br.applabbs.ricettario.domain.local.models.Receita
 
 class LocalRepositoryImpl(
     private val stepDao: StepDao,
     private val fotoDao: FotoDao,
-    private val receitaDao: ReceitaDao
+    private val receitaDao: ReceitaDao,
+    private val registroDao: RegistroDao
 ): LocalRepository {
 
     override suspend fun insertStepIntoDB(stepEntity: StepEntity){
@@ -76,6 +79,22 @@ class LocalRepositoryImpl(
         receitaDao.deleteReceita(idReceita = idReceita)
         stepDao.deleteAllStepsFromIdReceita(idReceita = idReceita)
         fotoDao.deleteAllFotosFromIdReceita(idReceita = idReceita)
+    }
+
+    override suspend fun addRegistro(registro: RegistroEntity) {
+        registroDao.addRegistro(registro = registro)
+    }
+
+    override suspend fun deleteRegistro(registro: RegistroEntity) {
+        registroDao.deleteRegistro(idRegistro = registro.idRegistro ?: 0)
+    }
+
+    override suspend fun getAllRegistros(): List<RegistroEntity> {
+        return registroDao.getAllRegistros()
+    }
+
+    override suspend fun updateRegistro(registro: RegistroEntity) {
+        registroDao.updateRegistro(registro = registro)
     }
 
 }

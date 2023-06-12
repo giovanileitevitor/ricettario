@@ -6,7 +6,8 @@
     <color name="blue">#5C6BC0</color>
     <color name="gray">#C5CAE9</color>
     <color name="gray_light">#FDFDFD</color>
-    <color name="yellow">#FFEE58</color>
+    <color name="yellow">#EEC82E</color>
     <color name="green">#FF26B355</color>
-    <color name="red">#FFE60808</color>
+    <color name="red">#FF001E</color>
+    <color name="laranja">#FF9800</color>
 </resources>

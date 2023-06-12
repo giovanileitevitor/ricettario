@@ -144,7 +144,9 @@ class HomeActivity : AppCompatActivity() {
         customDialog.apply {
             setView(bind.root)
             setCancelable(true)
+            window?.setBackgroundDrawableResource(android.R.color.transparent)
         }.show()
+
 
         bind.btnSearchReceita.onDebouncedListener{
             val titleReceita = bind.edtSearchReceita.editableText.toString()

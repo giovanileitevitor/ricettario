@@ -80,7 +80,6 @@ class ReceitaUseCaseImpl(
         localRepository.deleteReceita(idReceita = idReceita)
     }
 
-
     private fun convertToStepEntity(step: Step): StepEntity{
         return StepEntity(
             info = step.info,

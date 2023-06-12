@@ -18,11 +18,20 @@ class ConfigurarViewModel(
     val hasTimeout: LiveData<Boolean> get() = _hasTimeout
     private val _hasTimeout: MutableLiveData<Boolean> = MutableLiveData()
 
+    val totalContacts: LiveData<Int> get() = _totalContacts
+    private val _totalContacts: MutableLiveData<Int> = MutableLiveData()
+
     fun startAlarm(){
         viewModelScope.launch {
             _hasTimeout.postValue(true)
             delay(3000)
             _hasTimeout.postValue(false)
+        }
+    }
+
+    fun getTotalContacts(){
+        viewModelScope.launch {
+            _totalContacts.postValue(receitaUseCase.getAllReceitas().size ?: 0)
         }
     }
 

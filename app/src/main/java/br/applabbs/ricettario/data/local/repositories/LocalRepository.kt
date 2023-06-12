@@ -2,6 +2,7 @@ package br.applabbs.ricettario.data.local.repositories
 
 import br.applabbs.ricettario.data.local.entities.FotoEntity
 import br.applabbs.ricettario.data.local.entities.ReceitaEntity
+import br.applabbs.ricettario.data.local.entities.RegistroEntity
 import br.applabbs.ricettario.data.local.entities.StepEntity
 
 interface LocalRepository {
@@ -23,5 +24,10 @@ interface LocalRepository {
     suspend fun getAllReceitas(): List<ReceitaEntity>
     suspend fun setReceitaAsFavorite(idReceita: Int)
     suspend fun deleteReceita(idReceita: Int)
+
+    suspend fun addRegistro(registro: RegistroEntity)
+    suspend fun updateRegistro(registro: RegistroEntity)
+    suspend fun getAllRegistros(): List<RegistroEntity>
+    suspend fun deleteRegistro(registro: RegistroEntity)
 
 }

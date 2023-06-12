@@ -61,18 +61,17 @@
         tools:text="Total de Receitas: "/>
 
     <TextView
-        android:id="@+id/txt_qtd_contatos"
+        android:id="@+id/txtQtdContatos"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:text="-error-"
+        tools:text="-error-"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_20"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/label_apagar"
         app:layout_constraintStart_toEndOf="@id/guideCenter"
-        app:layout_constraintTop_toTopOf="@id/label_apagar"
-        tools:text="10" />
+        app:layout_constraintTop_toTopOf="@id/label_apagar" />
 
     <Button
         android:id="@+id/btnCrash"
@@ -82,9 +81,9 @@
         android:background="@color/black"
         android:text="-"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="@id/txt_qtd_contatos"
+        app:layout_constraintBottom_toBottomOf="@id/txtQtdContatos"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/txt_qtd_contatos"/>
+        app:layout_constraintTop_toTopOf="@id/txtQtdContatos"/>
 
     <Button
         android:id="@+id/btnAlarm"

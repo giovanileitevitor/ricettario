@@ -14,7 +14,6 @@ object AppComponent{
             viewModelModule,
             localUseCasesModule,
             localRepositoriesModule
-            //remoteUseCasesModule
         )
     }
 }

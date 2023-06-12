@@ -22,44 +22,18 @@ class ConfigurarActivity: BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityConfigurarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupView()
         setupListeners()
         setupObservers()
-        Log.d("APP", "on Create")
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("APP", "on Start")
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Log.d("APP", "on Resume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("APP", "on Pause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("APP", "on Stop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("APP", "on Destroy")
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-        Log.d("APP", "on Restart")
+    private fun setupView(){
+        viewModel.getTotalContacts()
     }
 
     private fun setupListeners(){
         binding.btnVoltar.onDebouncedListener {
-            super.onBackPressed()
+
         }
 
         binding.btnCrash.onDebouncedListener{
@@ -98,6 +72,12 @@ class ConfigurarActivity: BaseActivity() {
             when(finishTime){
                 true -> Toast.makeText(this, "Inicio do tempo de espera", Toast.LENGTH_SHORT).show()
                 false -> Toast.makeText(this, "Fim do tempo de espera", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        viewModel.totalContacts.observe(this, Observer {
+            it.let{
+                binding.txtQtdContatos.text = it.toString()
             }
         })
     }
