@@ -16,15 +16,27 @@ class InventarioUseCaseImpl(
         localRepository.updateRegistro(registro = convertRegistro(input = registro))
     }
 
-    override suspend fun getAllRegistros(): List<Registro> {
+    override suspend fun getAllRegistros(): ArrayList<Registro> {
         return convertRegistroEntityIntoRegistro(localRepository.getAllRegistros())
     }
 
     override suspend fun deleteRegistro(registro: Registro) {
-        localRepository.deleteRegistro(registro = convertRegistro(input = registro))
+        localRepository.deleteRegistro(registro = convertDeletedRegistro(input = registro))
     }
 
     private fun convertRegistro(input: Registro): RegistroEntity{
+        return RegistroEntity(
+            productName = input.productName,
+            productBrand = input.productBrand,
+            qtd = input.qtd,
+            productVality = input.productVality,
+            dateRegister = input.dateRegister,
+            hasImage = input.hasImage,
+            imageAddress = input.imageAddress
+        )
+    }
+
+    private fun convertDeletedRegistro(input: Registro): RegistroEntity{
         return RegistroEntity(
             idRegistro = input.idRegistro,
             productName = input.productName,
@@ -50,12 +62,12 @@ class InventarioUseCaseImpl(
         )
     }
 
-    private fun convertRegistroEntityIntoRegistro(registros: List<RegistroEntity>) : List<Registro>{
-        val registroList = mutableListOf<Registro>()
+    private fun convertRegistroEntityIntoRegistro(registros: List<RegistroEntity>) : ArrayList<Registro>{
+        val registroList = arrayListOf<Registro>()
         registros.forEach {
             registroList.add(
                 Registro(
-                    idRegistro = it.idRegistro,
+                    idRegistro = it.idRegistro ?: 0,
                     productName = it.productName ?: "",
                     productBrand = it.productBrand ?: "",
                     qtd = it.qtd ?: "",

@@ -78,7 +78,7 @@ object AppModules{
     }
 
     val localRepositoriesModule = module {
-        single { LocalDB.createDatabase(context = get())}
+        single { LocalDB.getDatabase(context = get())}
         single { get<LocalDB>().receitaDao()}
         single { get<LocalDB>().stepDao()}
         single { get<LocalDB>().fotoDao()}

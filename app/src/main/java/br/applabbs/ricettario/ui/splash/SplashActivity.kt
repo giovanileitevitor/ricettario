@@ -53,11 +53,6 @@ class SplashActivity(): AppCompatActivity() {
                 binding.mainImg.setImageDrawable(getDrawable(R.mipmap.ic_riccetario_debug))
             }
         }
-
-
-
-
-
     }
 
     private fun setupObservers(){

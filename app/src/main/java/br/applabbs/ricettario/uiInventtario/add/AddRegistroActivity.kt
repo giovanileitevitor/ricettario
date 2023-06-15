@@ -9,10 +9,17 @@ import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import br.applabbs.ricettario.aux.DateTextWatcher
 import br.applabbs.ricettario.aux.PermissionUtils
+import br.applabbs.ricettario.aux.hideKeyboard
 import br.applabbs.ricettario.databinding.ActivityAddRegistroBinding
 import br.applabbs.ricettario.domain.local.models.Registro
+import br.applabbs.ricettario.ui.adicionar.AdicionarActivity
+import br.applabbs.ricettario.ui.adicionar.FotosAdapter
 import br.applabbs.ricettario.uiInventtario.home.InventarioViewModel
+import com.bumptech.glide.Glide
+import kotlinx.coroutines.delay
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -23,6 +30,7 @@ class AddRegistroActivity: AppCompatActivity() {
     private val viewModel : InventarioViewModel by viewModel()
     private val REQUEST_CODE = 999
     private var globalDate: String = ""
+    private var imageAddress: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,10 +40,6 @@ class AddRegistroActivity: AppCompatActivity() {
         setupView()
         setupListeners()
         setupObservers()
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     private fun setupPermissions(){
@@ -49,7 +53,8 @@ class AddRegistroActivity: AppCompatActivity() {
         val current = formatter.format(time)
         globalDate = current
         binding.edtDateRegister.setText(current)
-        binding.edtDateRegister.isEnabled = false
+        binding.edtValidate.addTextChangedListener(DateTextWatcher(binding.edtValidate))
+        binding.btnFoto.bringToFront()
     }
 
     private fun setupListeners(){
@@ -65,39 +70,42 @@ class AddRegistroActivity: AppCompatActivity() {
             val nameProduct = binding.edtNome.text.trim() ?: ""
             val brandProduct = binding.edtBrand.text.trim() ?: ""
             val quantity = binding.edtQtd.text.trim() ?: ""
-            val validateProduct = binding.edtValidate.text.trim() ?: ""
+            val validateProduct = binding.edtValidate.text ?: ""
             val dateRegister = binding.edtDateRegister.text.trim() ?: ""
+            val imageAddress = imageAddress ?: ""
 
-            if(nameProduct.isNullOrEmpty() || brandProduct.isNullOrEmpty() || quantity.isNullOrEmpty()
-                || validateProduct.isNullOrEmpty() || dateRegister.isNullOrEmpty()){
+            if(nameProduct.isNullOrEmpty() || brandProduct.isNullOrEmpty()
+                || quantity.isNullOrEmpty() || validateProduct.isNullOrEmpty()
+                || dateRegister.isNullOrEmpty() || imageAddress.isNullOrEmpty() ){
                 showToast(msg = "All fields must be filled in.")
             }else{
                 val registro = Registro(
-                    idRegistro = 0,
+                    idRegistro = null,
                     productName = nameProduct.toString(),
                     productBrand = brandProduct.toString(),
                     qtd = quantity.toString(),
                     productVality = validateProduct.toString(),
                     dateRegister = dateRegister.toString(),
-                    hasImage = false,
-                    imageAddress = ""
+                    hasImage = true,
+                    imageAddress = imageAddress
                 )
                 viewModel.addRegistro(registro = registro)
+                hideKeyboard()
             }
         }
     }
 
     private fun setupObservers(){
-        viewModel.addedWithSuccess.observe(this){
+        viewModel.isSuccess.observe(this){
             if(it){
                 showToast("Item saved with success !!")
-            }else{
-
+                finish()
             }
         }
 
         viewModel.isError.observe(this){
-                showToast("$it")
+            showToast("$it")
+            finish()
         }
     }
 
@@ -115,7 +123,9 @@ class AddRegistroActivity: AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE && data != null){
             val imageFile = data.extras?.get("data") as Bitmap
-            //viewModel.addNewFoto(imgAddress = viewModel.createImageFile(imageFile))
+            imageAddress = viewModel.createImageFile(imageFile)
+            binding.imgMainRegistro.setImageBitmap(imageFile)
+            binding.btnFoto.bringToFront()
         }
     }
 

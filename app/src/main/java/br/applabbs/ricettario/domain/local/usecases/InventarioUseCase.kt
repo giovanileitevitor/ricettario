@@ -6,7 +6,7 @@ interface InventarioUseCase {
 
     suspend fun addRegistro(registro: Registro)
     suspend fun updateRegistro(registro: Registro)
-    suspend fun getAllRegistros(): List<Registro>
+    suspend fun getAllRegistros(): ArrayList<Registro>
     suspend fun deleteRegistro(registro: Registro)
 
 }

@@ -51,10 +51,26 @@ android {
             buildConfigField "String", "APP_TYPE_NAME", "\"Inventtario\""
             buildConfigField "Boolean", "APP_TYPE", "true"
             manifestPlaceholders = [
-                    appIcon:  "@mipmap/ic_riccetario_debug",
-                    appName: "@string/app_name_debug"
+                    appIcon:  "@drawable/ic_inventtario",
+                    appName: "@string/app_name_inventtario"
             ]
         }
+
+        inventtario {
+            applicationIdSuffix ".debug"
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            testCoverageEnabled true
+            //buildConfigField "String", "APP_TYPE_NAME", "\"Ricettario\""
+            buildConfigField "String", "APP_TYPE_NAME", "\"Inventtario\""
+            buildConfigField "Boolean", "APP_TYPE", "true"
+            manifestPlaceholders = [
+                    appIcon:  "@drawable/ic_inventtario",
+                    appName: "@string/app_name_inventtario"
+            ]
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -136,6 +152,9 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:31.0.3')
     implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
+    //Máscara de texto
+    implementation 'ru.egslava:MaskedEditText:1.0.4'
 
 }
 

@@ -14,6 +14,7 @@ import br.applabbs.ricettario.aux.geradorRegistros
 import br.applabbs.ricettario.aux.randomicInteger
 import br.applabbs.ricettario.domain.local.models.Registro
 import br.applabbs.ricettario.domain.local.usecases.InventarioUseCase
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
@@ -27,36 +28,60 @@ class InventarioViewModel(
     private val inventarioUseCase: InventarioUseCase
 ): ViewModel() {
 
-    val registros: LiveData<List<Registro>> get() = _registros
-    private val _registros: MutableLiveData<List<Registro>> = MutableLiveData()
+    val registros: LiveData<ArrayList<Registro>> get() = _registros
+    private val _registros: MutableLiveData<ArrayList<Registro>> = MutableLiveData()
 
     val isError: LiveData<String> get() = _isError
     private val _isError: MutableLiveData<String> = MutableLiveData()
 
-    val addedWithSuccess: LiveData<Boolean> get() = _addedWithSuccess
-    private val _addedWithSuccess: MutableLiveData<Boolean> = MutableLiveData()
+    val isSuccess: LiveData<Boolean> get() = _isSuccess
+    private val _isSuccess: MutableLiveData<Boolean> = MutableLiveData()
+
+    val isDeleted: LiveData<Boolean> get() = _isDeleted
+    private val _isDeleted: MutableLiveData<Boolean> = MutableLiveData()
+
+    val isLoading: LiveData<Boolean> get() = _isLoading
+    private val _isLoading: MutableLiveData<Boolean> = MutableLiveData()
 
 
     fun getAllRegistros(){
         viewModelScope.launch {
+            _isLoading.value = true
             try {
-                //_registros.postValue(inventarioUseCase.getAllRegistros())
-                _registros.postValue(geradorRegistros(qtd = randomicInteger()))
+                _registros.value = inventarioUseCase.getAllRegistros()
+                delay(MININUM_TIME)
             }catch (ex: Exception){
-                _isError.postValue("Fail on DB Process")
+                _isError.value = "Fail on DB Process"
             }
+            _isLoading.value = false
         }
     }
 
     fun addRegistro(registro: Registro){
         viewModelScope.launch {
+            _isLoading.value = true
             try {
                 inventarioUseCase.addRegistro(registro = registro)
-                _addedWithSuccess.postValue(true)
+                _isSuccess.value = true
+                delay(MININUM_TIME)
             }catch (ex: Exception){
-                _isError.postValue("Fail on DB Process")
-                _addedWithSuccess.postValue(false)
+                _isError.value = "Fail on DB Process"
             }
+            _isLoading.value = false
+        }
+    }
+
+    fun deleteRegistro(registro : Registro){
+        viewModelScope.launch {
+            _isLoading.value = true
+            try {
+                inventarioUseCase.deleteRegistro(registro = registro)
+                _isDeleted.value = true
+                delay(MININUM_TIME)
+            }catch (ex: Exception){
+                _isError.value = "Fail on DB Process"
+            }
+            _isLoading.value = false
         }
     }
 
@@ -83,6 +108,10 @@ class InventarioViewModel(
                 }
             }
         }
+    }
+
+    companion object{
+        private const val MININUM_TIME = 500L
     }
 
 }

@@ -2,6 +2,7 @@ package br.applabbs.ricettario.data.local.dao
 
 import androidx.room.*
 import br.applabbs.ricettario.data.local.entities.FotoEntity
+import br.applabbs.ricettario.data.local.entities.FotoRegistroEntity
 
 @Dao
 interface FotoDao{
